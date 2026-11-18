@@ -1,2 +1,2 @@
 # K4.Net
-FSM News
+KaMoRale 4 
