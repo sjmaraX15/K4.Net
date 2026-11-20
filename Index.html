@@ -3,35 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SJ Mara | Personal Portfolio</title>
-<meta name="description" content="Explore the work, gallery, blog, and island stories of SJ Mara.">
+<title>SJ Mara | Personal Website</title>
+<meta name="description" content="Explore SJ Mara's gallery, blog, and island stories from Micronesia.">
 <style>
 :root { --ink:#172521; --muted:#64736d; --paper:#f7f7f2; --green:#245c4b; --lime:#d7e8a4; --line:#dfe5dc; }
 * { box-sizing:border-box; margin:0; padding:0; }
-html { scroll-behavior:smooth; scroll-padding-top:85px; }
+html { scroll-behavior:smooth; scroll-padding-top:82px; }
 body { font-family:Arial,sans-serif; background:var(--paper); color:var(--ink); line-height:1.6; }
 a { color:inherit; }
-header { min-height:74vh; display:flex; flex-direction:column; background:linear-gradient(120deg,#173e35 0%,#245c4b 58%,#6d9472 100%); color:white; }
-.topbar { width:min(1120px,90%); margin:0 auto; padding:24px 0; display:flex; align-items:center; justify-content:space-between; gap:24px; }
-.brand { font-family:Georgia,serif; font-size:24px; font-weight:bold; text-decoration:none; letter-spacing:.5px; }
+.site-header { background:#173e35; color:white; position:sticky; top:0; z-index:10; }
+.topbar { width:min(1120px,90%); min-height:72px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+.brand { font-family:Georgia,serif; font-size:24px; font-weight:bold; text-decoration:none; }
 nav { display:flex; align-items:center; gap:26px; }
 nav a { font-size:13px; font-weight:bold; color:white; text-decoration:none; }
 nav a:hover, nav a:focus-visible { color:var(--lime); }
 .menu-toggle { display:none; border:1px solid #ffffff80; border-radius:4px; background:transparent; color:white; padding:8px 12px; font-weight:bold; }
-.hero { width:min(1120px,90%); flex:1; margin:0 auto; display:flex; align-items:center; padding:70px 0 100px; }
-.hero-copy { max-width:720px; }
-.eyebrow { font-size:11px; letter-spacing:3px; text-transform:uppercase; font-weight:bold; color:var(--lime); }
-h1,h2,h3 { font-family:Georgia,serif; }
-h1 { font-size:clamp(48px,8vw,88px); line-height:1.02; margin:20px 0; }
-.hero p { max-width:570px; color:#e4eee6; font-size:18px; }
-.button { display:inline-block; margin-top:28px; padding:13px 20px; background:var(--lime); border-radius:3px; color:var(--ink); font-size:12px; text-decoration:none; font-weight:bold; letter-spacing:.5px; }
-.button:hover { background:white; }
 .container { width:min(1120px,90%); margin:0 auto; }
-section.content-section { padding:82px 0; }
+.home-section { min-height:calc(100vh - 72px); padding:72px 0 82px; background:linear-gradient(180deg,#edf1e9,var(--paper)); }
+.home-intro { margin-bottom:30px; }
+.label { color:var(--green); font-size:11px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; }
+h1,h2,h3 { font-family:Georgia,serif; }
+.home-intro h1 { font-size:clamp(42px,7vw,72px); line-height:1.04; margin:10px 0; }
+.home-intro p:last-child { color:var(--muted); max-width:620px; }
+.cover-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+.cover-card { min-height:270px; position:relative; isolation:isolate; display:flex; flex-direction:column; justify-content:end; overflow:hidden; padding:26px; border-radius:5px; background:#245c4b; color:white; text-decoration:none; }
+.cover-card::before { content:""; position:absolute; inset:0; z-index:-2; background-image:var(--cover); background-position:center; background-size:cover; transition:transform .45s ease; }
+.cover-card::after { content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg,#06150c00 15%,#071710d9 100%); }
+.cover-card:hover::before, .cover-card:focus-visible::before { transform:scale(1.05); }
+.cover-card .label { color:var(--lime); }
+.cover-card h2 { font-size:clamp(27px,4vw,38px); margin:5px 0; }
+.cover-card p { color:#f0f3ed; font-size:14px; max-width:450px; }
+.view-more { display:inline-block; margin-top:13px; font-size:12px; font-weight:bold; letter-spacing:.8px; text-transform:uppercase; }
+.content-section { padding:78px 0; }
 .section-heading { display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:30px; }
 .section-heading h2 { font-size:clamp(32px,5vw,46px); line-height:1.1; margin-top:7px; }
-.section-heading p { max-width:440px; color:var(--muted); font-size:14px; }
-.label { color:var(--green); font-size:11px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; }
+.section-heading > p { max-width:440px; color:var(--muted); font-size:14px; }
 .gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
 .gallery-item { min-height:300px; background:#dce8df; overflow:hidden; position:relative; }
 .gallery-item img { width:100%; height:100%; min-height:300px; object-fit:cover; display:block; transition:transform .4s ease; }
@@ -41,7 +47,7 @@ section.content-section { padding:82px 0; }
 .blog-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
 .blog-card { background:white; border:1px solid var(--line); padding:28px; }
 .blog-card h3 { font-size:24px; line-height:1.2; margin:12px 0; }
-.blog-card p { color:var(--muted); font-size:14px; }
+.blog-card p:last-child { color:var(--muted); font-size:14px; }
 .explore-section { background:#fff; }
 .island-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
 .island-card { min-height:235px; padding:24px 20px; display:flex; flex-direction:column; justify-content:end; border-radius:4px; color:white; text-decoration:none; background:linear-gradient(155deg,#245c4b,#142e29); transition:transform .2s; }
@@ -55,28 +61,27 @@ section.content-section { padding:82px 0; }
 .island-detail { border-top:1px solid var(--line); }
 .contact-section { background:var(--green); color:white; }
 .contact-section .label { color:var(--lime); }
-.contact-section .section-heading p { color:#e0e9df; }
+.contact-section .section-heading > p, .contact-box p { color:#e0e9df; }
 .contact-box { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:30px; border:1px solid #ffffff50; }
 .contact-box h3 { font-size:25px; }
-.contact-box p { color:#e0e9df; font-size:14px; }
-.contact-box a { white-space:nowrap; }
+.button { display:inline-block; padding:13px 20px; background:var(--lime); border-radius:3px; color:var(--ink); font-size:12px; text-decoration:none; font-weight:bold; white-space:nowrap; }
+.button:hover { background:white; }
 footer { padding:28px 5%; background:#14251f; color:#cbd6cc; text-align:center; font-size:12px; }
 footer a { color:white; text-decoration:none; }
 @media(max-width:800px) {
  .topbar { position:relative; }
  .menu-toggle { display:block; }
- nav { display:none; position:absolute; z-index:5; top:70px; left:0; right:0; padding:18px; background:#173e35; flex-direction:column; align-items:flex-start; gap:16px; }
+ nav { display:none; position:absolute; z-index:5; top:64px; left:0; right:0; padding:18px; background:#173e35; flex-direction:column; align-items:flex-start; gap:16px; }
  nav.open { display:flex; }
  .island-grid { grid-template-columns:repeat(2,1fr); }
  .gallery-grid { grid-template-columns:repeat(2,1fr); }
 }
 @media(max-width:560px) {
- header { min-height:70vh; }
- .hero { padding:55px 0 75px; }
- .hero p { font-size:16px; }
- section.content-section { padding:60px 0; }
+ .home-section { padding:54px 0 60px; }
+ .cover-grid,.gallery-grid,.blog-grid,.island-grid { grid-template-columns:1fr; }
+ .cover-card { min-height:220px; }
+ .content-section { padding:60px 0; }
  .section-heading { align-items:flex-start; flex-direction:column; }
- .gallery-grid,.blog-grid,.island-grid { grid-template-columns:1fr; }
  .gallery-item,.gallery-item img { min-height:260px; }
  .island-card { min-height:190px; }
  .contact-box { align-items:flex-start; flex-direction:column; padding:22px; }
@@ -84,7 +89,7 @@ footer a { color:white; text-decoration:none; }
 </style>
 </head>
 <body>
-<header id="home">
+<header class="site-header">
  <div class="topbar">
   <a class="brand" href="#home">SJ Mara</a>
   <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
@@ -92,16 +97,21 @@ footer a { color:white; text-decoration:none; }
    <a href="#home">Home</a><a href="#gallery">My Gallery</a><a href="#blog">My Blog</a><a href="#explore">Explore</a><a href="#contact">Contact</a>
   </nav>
  </div>
- <div class="hero"><div class="hero-copy">
-  <p class="eyebrow">A personal space by SJ Mara</p>
-  <h1>Stories, places<br>and moments.</h1>
-  <p>Welcome to my corner of the web—discover my gallery, read my latest stories, and explore the islands of Micronesia.</p>
-  <a class="button" href="#explore">EXPLORE THE ISLANDS&nbsp; →</a>
- </div></div>
 </header>
 <main>
+ <section class="home-section" id="home">
+  <div class="container">
+   <div class="home-intro"><p class="label">Welcome to my website</p><h1>SJ Mara</h1><p>Explore my photos, stories, and favorite places across the islands.</p></div>
+   <div class="cover-grid" aria-label="Explore website sections">
+    <a class="cover-card" href="#gallery" style="--cover:url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&amp;fit=crop&amp;w=1200&amp;q=85')"><span class="label">Photos &amp; moments</span><h2>My Gallery</h2><p>Island scenes and moments from my journey.</p><span class="view-more">View more →</span></a>
+    <a class="cover-card" href="#blog" style="--cover:url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&amp;fit=crop&amp;w=1200&amp;q=85')"><span class="label">Notes &amp; stories</span><h2>My Blog</h2><p>Read thoughts, experiences, and stories.</p><span class="view-more">View more →</span></a>
+    <a class="cover-card" href="#explore" style="--cover:url('https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&amp;fit=crop&amp;w=1200&amp;q=85')"><span class="label">Micronesia</span><h2>Explore</h2><p>Discover Yap, Chuuk, Pohnpei, and Kosrae.</p><span class="view-more">View more →</span></a>
+    <a class="cover-card" href="#contact" style="--cover:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&amp;fit=crop&amp;w=1200&amp;q=85')"><span class="label">Say hello</span><h2>Contact</h2><p>Get in touch and share a message.</p><span class="view-more">View more →</span></a>
+   </div>
+  </div>
+ </section>
  <section class="content-section" id="gallery"><div class="container">
-  <div class="section-heading"><div><p class="label">A few moments</p><h2>My Gallery</h2></div><p>A collection of places and island scenes. The gallery is ready for SJ Mara’s own photographs.</p></div>
+  <div class="section-heading"><div><p class="label">A few moments</p><h2>My Gallery</h2></div><p>A collection of places and island scenes. Replace these sample photos with your own when ready.</p></div>
   <div class="gallery-grid">
    <figure class="gallery-item"><img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Turquoise ocean waves along a tropical shore" loading="lazy"><figcaption>Island waters</figcaption></figure>
    <figure class="gallery-item"><img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Tropical palm trees beside a beach" loading="lazy"><figcaption>Island days</figcaption></figure>
@@ -130,7 +140,7 @@ footer a { color:white; text-decoration:none; }
  <section class="content-section island-detail" id="kosrae"><div class="container"><p class="label">Explore the Islands</p><h2>Kosrae</h2><p>Discover stories, places, and traditions from Kosrae.</p></div></section>
  <section class="content-section contact-section" id="contact"><div class="container">
   <div class="section-heading"><div><p class="label">Say hello</p><h2>Contact</h2></div><p>Have a question, a story to share, or just want to connect? I’d love to hear from you.</p></div>
-  <div class="contact-box"><div><h3>Let’s connect.</h3><p>Add your preferred email or social link here to make it easy to get in touch.</p></div><a class="button" href="mailto:your-email@example.com">GET IN TOUCH&nbsp; →</a></div>
+  <div class="contact-box"><div><h3>Let’s connect.</h3><p>Replace the sample email below with your preferred contact email.</p></div><a class="button" href="mailto:your-email@example.com">GET IN TOUCH →</a></div>
  </div></section>
 </main>
 <footer><p>© <span id="year"></span> SJ Mara. Made with care.</p><p><a href="#home">Back to top ↑</a></p></footer>
