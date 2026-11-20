@@ -6,249 +6,71 @@
   <meta name="robots" content="noindex, nofollow">
   <title>Admin dashboard | SJ Mara</title>
   <style>
-    :root{font-family:Arial,sans-serif;color:#172521;background:#f4f6f1;font-synthesis:none}*{box-sizing:border-box}body{margin:0}header{background:#173e35;color:#fff;padding:18px 5%}header>div,main{width:min(1050px,100%);margin:auto}header>div{display:flex;align-items:center;justify-content:space-between;gap:16px}header h1{font:700 22px Georgia,serif;margin:0}main{padding:32px 5% 60px}.card{background:#fff;border:1px solid #dfe5dc;border-radius:8px;padding:22px;margin:0 0 20px;box-shadow:0 3px 14px #1725210a}h2{font:700 24px Georgia,serif;margin:0 0 16px}.muted{color:#64736d;font-size:14px}.notice{padding:12px 14px;border-radius:5px;margin:0 0 18px;background:#edf1e9;color:#245c4b}.notice.error{background:#fff0ed;color:#9a321f}label{display:block;font-weight:700;font-size:13px;margin:12px 0 5px}input,textarea,select{width:100%;padding:11px;border:1px solid #cbd4ca;border-radius:4px;font:inherit;color:inherit;background:#fff}textarea{min-height:120px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}.check{display:flex;align-items:center;gap:9px;margin:14px 0}.check input{width:auto}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}button,.button{border:0;border-radius:4px;padding:11px 15px;background:#245c4b;color:#fff;font-weight:700;cursor:pointer;font:700 13px Arial,sans-serif}button:hover{background:#173e35}button.secondary{background:#e8eee7;color:#172521}button.danger{background:#9a321f}.top-actions{display:flex;gap:8px;align-items:center}#dashboard{display:none}.tabs{display:flex;gap:8px;margin-bottom:18px}.tabs button.active{background:#173e35}.item{padding:14px 0;border-top:1px solid #e4e9e2;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}.item:first-child{border-top:0}.item h3{margin:0 0 5px;font:700 18px Georgia,serif}.item p{margin:0;color:#64736d;font-size:13px;overflow-wrap:anywhere}.item-actions{display:flex;flex-wrap:wrap;gap:7px;flex-shrink:0}.item-actions button{padding:8px 10px}.hidden{display:none!important}.small{font-size:12px}@media(max-width:650px){main{padding-top:22px}.row{grid-template-columns:1fr}.item{display:block}.item-actions{margin-top:12px}header>div{align-items:flex-start}}
+    :root{font-family:Arial,sans-serif;color:#172521;background:#f4f6f1}*{box-sizing:border-box}body{margin:0}header{background:#173e35;color:white;padding:18px 5%}header>div,main{width:min(1050px,100%);margin:auto}header>div{display:flex;align-items:center;justify-content:space-between;gap:16px}header h1{font:700 22px Georgia,serif;margin:0}main{padding:32px 5% 60px}.card{background:white;border:1px solid #dfe5dc;border-radius:8px;padding:22px;margin:0 0 20px;box-shadow:0 3px 14px #1725210a}h2{font:700 24px Georgia,serif;margin:0 0 16px}.muted{color:#64736d;font-size:14px}.notice{padding:12px 14px;border-radius:5px;margin:0 0 18px;background:#edf1e9;color:#245c4b}.notice.error{background:#fff0ed;color:#9a321f}label{display:block;font-weight:700;font-size:13px;margin:12px 0 5px}input,textarea,select{width:100%;padding:11px;border:1px solid #cbd4ca;border-radius:4px;font:inherit;color:inherit;background:white}textarea{min-height:110px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}.check{display:flex;align-items:center;gap:9px;margin:14px 0}.check input{width:auto}.actions,.tabs,.top-actions{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-top:14px}button{border:0;border-radius:4px;padding:11px 15px;background:#245c4b;color:white;font-weight:700;cursor:pointer}button:hover{background:#173e35}button.secondary{background:#e8eee7;color:#172521}button.danger{background:#9a321f}.tabs{margin:0 0 18px}.tabs button.active{background:#173e35}.hidden{display:none!important}#dashboard{display:none}.item{padding:14px 0;border-top:1px solid #e4e9e2;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}.item:first-child{border-top:0}.item h3{margin:0 0 5px;font:700 18px Georgia,serif}.item p{margin:0;color:#64736d;font-size:13px;overflow-wrap:anywhere}.item-actions{display:flex;flex-wrap:wrap;gap:7px;flex-shrink:0}.item-actions button{padding:8px 10px}.small{font-size:12px}@media(max-width:650px){main{padding-top:22px}.row{grid-template-columns:1fr}.item{display:block}.item-actions{margin-top:12px}}
   </style>
 </head>
 <body>
   <header><div><h1>SJ Mara · Admin</h1><div class="top-actions"><span id="signed-in" class="small"></span><button id="sign-out" class="secondary hidden" type="button">Sign out</button></div></div></header>
   <main>
     <div id="message" class="notice hidden" role="status" aria-live="polite"></div>
-    <section id="login-card" class="card">
-      <h2>Admin sign in</h2>
-      <p class="muted">Sign in with the account approved for this site's admin dashboard.</p>
-      <form id="login-form">
-        <label for="email">Email</label><input id="email" type="email" autocomplete="username" required>
-        <label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required>
-        <div class="actions"><button type="submit">Sign in</button></div>
-      </form>
+    <section id="login-card" class="card"><h2>Admin sign in</h2><p class="muted">Sign in with the account approved for this site's admin dashboard.</p>
+      <form id="login-form"><label for="email">Email</label><input id="email" type="email" autocomplete="username" required><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required><div class="actions"><button type="submit">Sign in</button></div></form>
     </section>
-
     <section id="dashboard">
       <div class="tabs"><button type="button" class="active" data-tab="articles">Articles</button><button type="button" class="secondary" data-tab="photos">Photos</button></div>
-      <section id="articles-panel">
-        <form id="article-form" class="card">
-          <h2 id="article-heading">New article</h2>
-          <input id="article-id" type="hidden">
-          <label for="article-title">Title</label><input id="article-title" maxlength="180" required>
-          <div class="row"><div><label for="article-slug">Slug</label><input id="article-slug" maxlength="180" required></div><div><label for="article-topic">Topic</label><input id="article-topic" maxlength="100" required></div></div>
-          <label for="article-excerpt">Excerpt</label><textarea id="article-excerpt" rows="3"></textarea>
-          <label for="article-content">Article content</label><textarea id="article-content" required></textarea>
-          <label for="article-image">Image URL (optional)</label><input id="article-image" type="url">
-          <label class="check"><input id="article-headline" type="checkbox"> Feature as a headline</label>
-          <label class="check"><input id="article-published" type="checkbox"> Published (visible to the public)</label>
-          <div class="actions"><button type="submit">Save article</button><button id="article-cancel" class="secondary hidden" type="button">Cancel edit</button></div>
-        </form>
-        <section class="card"><h2>Articles</h2><div id="article-list" class="muted">Loading…</div></section>
-      </section>
-      <section id="photos-panel" class="hidden">
-        <form id="photo-form" class="card">
-          <h2 id="photo-heading">Add photo</h2>
-          <input id="photo-id" type="hidden">
-          <label for="photo-title">Title</label><input id="photo-title" maxlength="180">
-          <div class="row"><div><label for="photo-topic">Topic</label><input id="photo-topic" maxlength="100"></div><div><label for="photo-file">Image file</label><input id="photo-file" type="file" accept="image/*"></div></div>
-          <p id="photo-file-help" class="muted small">Choose an image to upload. When editing, leave this blank to keep the current image.</p>
-          <label for="photo-caption">Caption</label><textarea id="photo-caption" rows="3"></textarea>
-          <label class="check"><input id="photo-published" type="checkbox"> Published (visible to the public)</label>
-          <div class="actions"><button type="submit">Save photo</button><button id="photo-cancel" class="secondary hidden" type="button">Cancel edit</button></div>
-        </form>
-        <section class="card"><h2>Photos</h2><div id="photo-list" class="muted">Loading…</div></section>
-      </section>
+      <section id="articles-panel"><form id="article-form" class="card"><h2 id="article-heading">New article</h2><input id="article-id" type="hidden">
+        <label for="article-title">Title</label><input id="article-title" maxlength="180" required>
+        <div class="row"><div><label for="article-slug">Slug</label><input id="article-slug" maxlength="180" required></div><div><label for="article-category">Category</label><select id="article-category" required></select></div></div>
+        <label for="article-excerpt">Excerpt</label><textarea id="article-excerpt" rows="3"></textarea><label for="article-content">Article content</label><textarea id="article-content" required></textarea><label for="article-image">Image URL (optional)</label><input id="article-image" type="url">
+        <label class="check"><input id="article-headline" type="checkbox"> Feature as a headline</label><label class="check"><input id="article-published" type="checkbox"> Published (visible to the public)</label>
+        <div class="actions"><button type="submit">Save article</button><button id="article-cancel" class="secondary hidden" type="button">Cancel edit</button></div>
+      </form><section class="card"><h2>Articles</h2><div id="article-list" class="muted">Loading…</div></section></section>
+      <section id="photos-panel" class="hidden"><form id="photo-form" class="card"><h2 id="photo-heading">Add photo</h2><input id="photo-id" type="hidden">
+        <label for="photo-title">Title</label><input id="photo-title" maxlength="180"><div class="row"><div><label for="photo-category">Category</label><select id="photo-category" required></select></div><div><label for="photo-file">Image file</label><input id="photo-file" type="file" accept="image/*"></div></div>
+        <p id="photo-file-help" class="muted small">Choose an image to upload. When editing, leave this blank to keep the current image.</p><label for="photo-caption">Caption</label><textarea id="photo-caption" rows="3"></textarea><label class="check"><input id="photo-published" type="checkbox"> Published (visible to the public)</label>
+        <div class="actions"><button type="submit">Save photo</button><button id="photo-cancel" class="secondary hidden" type="button">Cancel edit</button></div>
+      </form><section class="card"><h2>Photos</h2><div id="photo-list" class="muted">Loading…</div></section></section>
     </section>
   </main>
   <script type="module">
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-
-    const supabase = createClient(
-      'https://oyfearfdtyfqlvoxixpi.supabase.co',
-      'sb_publishable_WjFfVN6IpnYSdlfVmoX5rg_BTRf0Ax5'
-    );
-    const $ = (id) => document.getElementById(id);
-    const message = $('message');
-    let articles = [];
-    let photos = [];
-    let currentUser = null;
-
-    function notify(text, isError = false) {
-      message.textContent = text;
-      message.classList.toggle('error', isError);
-      message.classList.remove('hidden');
+    const supabase=createClient('https://oyfearfdtyfqlvoxixpi.supabase.co','sb_publishable_WjFfVN6IpnYSdlfVmoX5rg_BTRf0Ax5');
+    const $=id=>document.getElementById(id), message=$('message');
+    const categoryNames=['Island Life','Travel Notes','Yap','Chuuk','Pohnpei','Kosrae','Other'];
+    let articles=[],photos=[],currentUser=null;
+    function notify(text,isError=false){message.textContent=text;message.classList.toggle('error',isError);message.classList.remove('hidden')}
+    function clearNotice(){message.classList.add('hidden')}
+    function errorText(error){return error?.message||'Something went wrong. Please try again.'}
+    function slugify(text){return text.toLowerCase().trim().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
+    function node(tag,className,text){const el=document.createElement(tag);if(className)el.className=className;if(text!==undefined)el.textContent=text;return el}
+    function button(label,className,callback){const b=node('button',className,label);b.type='button';b.addEventListener('click',callback);return b}
+    function setupCategories(){for(const id of ['article-category','photo-category']){const select=$(id);select.replaceChildren();select.add(new Option('Choose a category',''));categoryNames.forEach(name=>select.add(new Option(name,name)));}}
+    function selectCategory(id,value){const select=$(id);if(value&&!Array.from(select.options).some(o=>o.value===value))select.add(new Option(value,value));select.value=value||'';}
+    async function checkAdmin(session){
+      if(!session?.user){currentUser=null;$('dashboard').style.display='none';$('login-card').classList.remove('hidden');$('sign-out').classList.add('hidden');$('signed-in').textContent='';return}
+      const {data,error}=await supabase.from('admins').select('id').eq('id',session.user.id).maybeSingle();
+      if(error||!data){await supabase.auth.signOut();$('dashboard').style.display='none';$('login-card').classList.remove('hidden');$('sign-out').classList.add('hidden');notify(error?`Could not verify admin access: ${errorText(error)}`:'This account is not approved as an admin.',true);return}
+      currentUser=session.user;$('login-card').classList.add('hidden');$('dashboard').style.display='block';$('sign-out').classList.remove('hidden');$('signed-in').textContent=session.user.email||'';clearNotice();await Promise.all([loadArticles(),loadPhotos()]);
     }
-    function clearNotice() { message.classList.add('hidden'); }
-    function errorText(error) { return error?.message || 'Something went wrong. Please try again.'; }
-    function slugify(text) {
-      return text.toLowerCase().trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-    }
-    function node(tag, className, text) {
-      const el = document.createElement(tag);
-      if (className) el.className = className;
-      if (text !== undefined) el.textContent = text;
-      return el;
-    }
-    function actionButton(label, className, callback) {
-      const button = node('button', className, label);
-      button.type = 'button';
-      button.addEventListener('click', callback);
-      return button;
-    }
-
-    async function checkAdmin(session) {
-      if (!session?.user) {
-        currentUser = null;
-        $('dashboard').style.display = 'none';
-        $('login-card').classList.remove('hidden');
-        $('sign-out').classList.add('hidden');
-        $('signed-in').textContent = '';
-        return;
-      }
-      const { data, error } = await supabase.from('admins').select('id').eq('id', session.user.id).maybeSingle();
-      if (error || !data) {
-        await supabase.auth.signOut();
-        $('dashboard').style.display = 'none';
-        $('login-card').classList.remove('hidden');
-        $('sign-out').classList.add('hidden');
-        notify(error ? `Could not verify admin access: ${errorText(error)}` : 'This account is not approved as an admin. Ask the site owner to check the admins table.', true);
-        return;
-      }
-      currentUser = session.user;
-      $('login-card').classList.add('hidden');
-      $('dashboard').style.display = 'block';
-      $('sign-out').classList.remove('hidden');
-      $('signed-in').textContent = session.user.email || '';
-      clearNotice();
-      await Promise.all([loadArticles(), loadPhotos()]);
-    }
-
-    async function loadArticles() {
-      const { data, error } = await supabase.from('articles').select('*').order('created_at', { ascending: false });
-      if (error) { $('article-list').textContent = errorText(error); return; }
-      articles = data || [];
-      const list = $('article-list');
-      list.replaceChildren();
-      if (!articles.length) { list.textContent = 'No articles yet.'; return; }
-      for (const article of articles) {
-        const item = node('div', 'item');
-        const info = node('div');
-        info.append(node('h3', '', article.title));
-        info.append(node('p', '', `${article.topic || 'Uncategorized'} · ${article.published ? 'Published' : 'Draft'}${article.headline ? ' · Headline' : ''} · /${article.slug}`));
-        const actions = node('div', 'item-actions');
-        actions.append(actionButton('Edit', 'secondary', () => editArticle(article)));
-        actions.append(actionButton(article.published ? 'Unpublish' : 'Publish', 'secondary', () => toggleArticle(article)));
-        actions.append(actionButton('Delete', 'danger', () => deleteArticle(article)));
-        item.append(info, actions); list.append(item);
-      }
-    }
-
-    function editArticle(a) {
-      $('article-id').value = a.id; $('article-title').value = a.title || ''; $('article-slug').value = a.slug || '';
-      $('article-topic').value = a.topic || ''; $('article-excerpt').value = a.excerpt || ''; $('article-content').value = a.content || '';
-      $('article-image').value = a.image_url || ''; $('article-headline').checked = !!a.headline; $('article-published').checked = !!a.published;
-      $('article-heading').textContent = 'Edit article'; $('article-cancel').classList.remove('hidden'); $('article-title').focus();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    function resetArticle() { $('article-form').reset(); $('article-id').value = ''; $('article-heading').textContent = 'New article'; $('article-cancel').classList.add('hidden'); }
-    async function toggleArticle(a) {
-      const { error } = await supabase.from('articles').update({ published: !a.published, updated_at: new Date().toISOString() }).eq('id', a.id);
-      if (error) notify(errorText(error), true); else { notify(`Article ${a.published ? 'unpublished' : 'published'}.`); await loadArticles(); }
-    }
-    async function deleteArticle(a) {
-      if (!confirm(`Delete “${a.title}”? This cannot be undone.`)) return;
-      const { error } = await supabase.from('articles').delete().eq('id', a.id);
-      if (error) notify(errorText(error), true); else { notify('Article deleted.'); await loadArticles(); }
-    }
-    $('article-title').addEventListener('input', () => { if (!$('article-id').value) $('article-slug').value = slugify($('article-title').value); });
-    $('article-cancel').addEventListener('click', resetArticle);
-    $('article-form').addEventListener('submit', async (event) => {
-      event.preventDefault(); clearNotice();
-      const id = $('article-id').value;
-      const payload = {
-        title: $('article-title').value.trim(), slug: slugify($('article-slug').value), topic: $('article-topic').value.trim(),
-        excerpt: $('article-excerpt').value.trim() || null, content: $('article-content').value.trim(), image_url: $('article-image').value.trim() || null,
-        headline: $('article-headline').checked, published: $('article-published').checked, updated_at: new Date().toISOString()
-      };
-      if (!payload.slug) { notify('Please enter a title to create a valid slug.', true); return; }
-      const result = id ? await supabase.from('articles').update(payload).eq('id', id) : await supabase.from('articles').insert(payload);
-      if (result.error) { notify(errorText(result.error), true); return; }
-      resetArticle(); notify('Article saved.'); await loadArticles();
-    });
-
-    async function loadPhotos() {
-      const { data, error } = await supabase.from('photos').select('*').order('created_at', { ascending: false });
-      if (error) { $('photo-list').textContent = errorText(error); return; }
-      photos = data || [];
-      const list = $('photo-list'); list.replaceChildren();
-      if (!photos.length) { list.textContent = 'No photos yet.'; return; }
-      for (const photo of photos) {
-        const item = node('div', 'item'); const info = node('div');
-        info.append(node('h3', '', photo.title || 'Untitled photo'));
-        info.append(node('p', '', `${photo.topic || 'Uncategorized'} · ${photo.published ? 'Published' : 'Draft'}${photo.caption ? ` · ${photo.caption}` : ''}`));
-        const actions = node('div', 'item-actions');
-        actions.append(actionButton('Edit', 'secondary', () => editPhoto(photo)));
-        actions.append(actionButton(photo.published ? 'Unpublish' : 'Publish', 'secondary', () => togglePhoto(photo)));
-        actions.append(actionButton('Delete', 'danger', () => deletePhoto(photo)));
-        item.append(info, actions); list.append(item);
-      }
-    }
-    function editPhoto(p) {
-      $('photo-id').value = p.id; $('photo-title').value = p.title || ''; $('photo-topic').value = p.topic || '';
-      $('photo-caption').value = p.caption || ''; $('photo-published').checked = !!p.published;
-      $('photo-heading').textContent = 'Edit photo'; $('photo-cancel').classList.remove('hidden');
-      $('photo-file-help').textContent = `Current image: ${p.image_path}. Leave file blank to keep it.`;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    function resetPhoto() { $('photo-form').reset(); $('photo-id').value = ''; $('photo-heading').textContent = 'Add photo'; $('photo-cancel').classList.add('hidden'); $('photo-file-help').textContent = 'Choose an image to upload. When editing, leave this blank to keep the current image.'; }
-    $('photo-cancel').addEventListener('click', resetPhoto);
-    async function togglePhoto(p) {
-      const { error } = await supabase.from('photos').update({ published: !p.published }).eq('id', p.id);
-      if (error) notify(errorText(error), true); else { notify(`Photo ${p.published ? 'unpublished' : 'published'}.`); await loadPhotos(); }
-    }
-    async function deletePhoto(p) {
-      if (!confirm(`Delete “${p.title || 'this photo'}” and its uploaded image? This cannot be undone.`)) return;
-      const { error: rowError } = await supabase.from('photos').delete().eq('id', p.id);
-      if (rowError) { notify(errorText(rowError), true); return; }
-      const { error: storageError } = await supabase.storage.from('site-media').remove([p.image_path]);
-      if (storageError) notify(`Photo record deleted, but image cleanup failed: ${errorText(storageError)}`, true);
-      else notify('Photo and uploaded image deleted.');
-      await loadPhotos();
-    }
-    $('photo-form').addEventListener('submit', async (event) => {
-      event.preventDefault(); clearNotice();
-      const id = $('photo-id').value;
-      const existing = photos.find((p) => p.id === id);
-      const file = $('photo-file').files?.[0];
-      if (!id && !file) { notify('Choose an image file to upload.', true); return; }
-      let imagePath = existing?.image_path;
-      let imageUrl = existing?.image_url;
-      if (file) {
-        if (!file.type.startsWith('image/')) { notify('Please choose an image file.', true); return; }
-        if (file.size > 10 * 1024 * 1024) { notify('Image must be 10 MB or smaller.', true); return; }
-        imagePath = `${currentUser.id}/${crypto.randomUUID()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, '-')}`;
-        const { error: uploadError } = await supabase.storage.from('site-media').upload(imagePath, file, { upsert: false, contentType: file.type });
-        if (uploadError) { notify(errorText(uploadError), true); return; }
-        const { data: urlData } = supabase.storage.from('site-media').getPublicUrl(imagePath);
-        imageUrl = urlData.publicUrl;
-      }
-      const payload = { title: $('photo-title').value.trim() || null, caption: $('photo-caption').value.trim() || null, topic: $('photo-topic').value.trim() || null, image_path: imagePath, image_url: imageUrl, published: $('photo-published').checked };
-      const result = id ? await supabase.from('photos').update(payload).eq('id', id) : await supabase.from('photos').insert(payload);
-      if (result.error) { notify(errorText(result.error), true); return; }
-      resetPhoto(); notify('Photo saved.'); await loadPhotos();
-    });
-
-    document.querySelectorAll('[data-tab]').forEach((button) => button.addEventListener('click', () => {
-      const photosTab = button.dataset.tab === 'photos';
-      $('articles-panel').classList.toggle('hidden', photosTab); $('photos-panel').classList.toggle('hidden', !photosTab);
-      document.querySelectorAll('[data-tab]').forEach((tab) => { tab.classList.toggle('active', tab === button); tab.classList.toggle('secondary', tab !== button); });
-    }));
-    $('login-form').addEventListener('submit', async (event) => {
-      event.preventDefault(); clearNotice();
-      const { data, error } = await supabase.auth.signInWithPassword({ email: $('email').value.trim(), password: $('password').value });
-      if (error) { notify(`Sign-in failed: ${errorText(error)}`, true); return; }
-      $('password').value = '';
-      await checkAdmin(data.session);
-    });
-    $('sign-out').addEventListener('click', async () => { await supabase.auth.signOut(); notify('Signed out.'); });
-    supabase.auth.onAuthStateChange((_event, session) => { void checkAdmin(session); });
-    const { data: { session } } = await supabase.auth.getSession();
-    await checkAdmin(session);
+    async function loadArticles(){const {data,error}=await supabase.from('articles').select('*').order('created_at',{ascending:false});if(error){$('article-list').textContent=errorText(error);return}articles=data||[];const list=$('article-list');list.replaceChildren();if(!articles.length){list.textContent='No articles yet.';return}for(const a of articles){const item=node('div','item'),info=node('div'),actions=node('div','item-actions');info.append(node('h3','',a.title),node('p','',`${a.topic||'Uncategorized'} · ${a.published?'Published':'Draft'}${a.headline?' · Headline':''} · /${a.slug}`));actions.append(button('Edit','secondary',()=>editArticle(a)),button(a.published?'Unpublish':'Publish','secondary',()=>toggleArticle(a)),button('Delete','danger',()=>deleteArticle(a)));item.append(info,actions);list.append(item)}}
+    function editArticle(a){$('article-id').value=a.id;$('article-title').value=a.title||'';$('article-slug').value=a.slug||'';selectCategory('article-category',a.topic);$('article-excerpt').value=a.excerpt||'';$('article-content').value=a.content||'';$('article-image').value=a.image_url||'';$('article-headline').checked=!!a.headline;$('article-published').checked=!!a.published;$('article-heading').textContent='Edit article';$('article-cancel').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'})}
+    function resetArticle(){$('article-form').reset();$('article-id').value='';$('article-heading').textContent='New article';$('article-cancel').classList.add('hidden')}
+    async function toggleArticle(a){const {error}=await supabase.from('articles').update({published:!a.published,updated_at:new Date().toISOString()}).eq('id',a.id);if(error)notify(errorText(error),true);else{notify(`Article ${a.published?'unpublished':'published'}.`);await loadArticles()}}
+    async function deleteArticle(a){if(!confirm(`Delete “${a.title}”? This cannot be undone.`))return;const {error}=await supabase.from('articles').delete().eq('id',a.id);if(error)notify(errorText(error),true);else{notify('Article deleted.');await loadArticles()}}
+    $('article-title').addEventListener('input',()=>{if(!$('article-id').value)$('article-slug').value=slugify($('article-title').value)});
+    $('article-cancel').addEventListener('click',resetArticle);
+    $('article-form').addEventListener('submit',async e=>{e.preventDefault();clearNotice();const id=$('article-id').value,payload={title:$('article-title').value.trim(),slug:slugify($('article-slug').value),topic:$('article-category').value,excerpt:$('article-excerpt').value.trim()||null,content:$('article-content').value.trim(),image_url:$('article-image').value.trim()||null,headline:$('article-headline').checked,published:$('article-published').checked,updated_at:new Date().toISOString()};if(!payload.slug){notify('Please enter a title to create a valid slug.',true);return}const result=id?await supabase.from('articles').update(payload).eq('id',id):await supabase.from('articles').insert(payload);if(result.error){notify(errorText(result.error),true);return}resetArticle();notify('Article saved to its selected category.');await loadArticles()});
+    async function loadPhotos(){const {data,error}=await supabase.from('photos').select('*').order('created_at',{ascending:false});if(error){$('photo-list').textContent=errorText(error);return}photos=data||[];const list=$('photo-list');list.replaceChildren();if(!photos.length){list.textContent='No photos yet.';return}for(const p of photos){const item=node('div','item'),info=node('div'),actions=node('div','item-actions');info.append(node('h3','',p.title||'Untitled photo'),node('p','',`${p.topic||'Uncategorized'} · ${p.published?'Published':'Draft'}${p.caption?` · ${p.caption}`:''}`));actions.append(button('Edit','secondary',()=>editPhoto(p)),button(p.published?'Unpublish':'Publish','secondary',()=>togglePhoto(p)),button('Delete','danger',()=>deletePhoto(p)));item.append(info,actions);list.append(item)}}
+    function editPhoto(p){$('photo-id').value=p.id;$('photo-title').value=p.title||'';selectCategory('photo-category',p.topic);$('photo-caption').value=p.caption||'';$('photo-published').checked=!!p.published;$('photo-heading').textContent='Edit photo';$('photo-cancel').classList.remove('hidden');$('photo-file-help').textContent=`Current image: ${p.image_path}. Leave file blank to keep it.`;window.scrollTo({top:0,behavior:'smooth'})}
+    function resetPhoto(){$('photo-form').reset();$('photo-id').value='';$('photo-heading').textContent='Add photo';$('photo-cancel').classList.add('hidden');$('photo-file-help').textContent='Choose an image to upload. When editing, leave this blank to keep the current image.'}
+    $('photo-cancel').addEventListener('click',resetPhoto);
+    async function togglePhoto(p){const {error}=await supabase.from('photos').update({published:!p.published}).eq('id',p.id);if(error)notify(errorText(error),true);else{notify(`Photo ${p.published?'unpublished':'published'}.`);await loadPhotos()}}
+    async function deletePhoto(p){if(!confirm(`Delete “${p.title||'this photo'}” and its uploaded image? This cannot be undone.`))return;const {error}=await supabase.from('photos').delete().eq('id',p.id);if(error){notify(errorText(error),true);return}const {error:storageError}=await supabase.storage.from('site-media').remove([p.image_path]);if(storageError)notify(`Photo record deleted, but image cleanup failed: ${errorText(storageError)}`,true);else notify('Photo and uploaded image deleted.');await loadPhotos()}
+    $('photo-form').addEventListener('submit',async e=>{e.preventDefault();clearNotice();const id=$('photo-id').value,existing=photos.find(p=>p.id===id),file=$('photo-file').files?.[0];if(!id&&!file){notify('Choose an image file to upload.',true);return}let imagePath=existing?.image_path,imageUrl=existing?.image_url;if(file){if(!file.type.startsWith('image/')){notify('Please choose an image file.',true);return}if(file.size>10*1024*1024){notify('Image must be 10 MB or smaller.',true);return}imagePath=`${currentUser.id}/${crypto.randomUUID()}-${file.name.replace(/[^a-zA-Z0-9._-]/g,'-')}`;const {error}=await supabase.storage.from('site-media').upload(imagePath,file,{upsert:false,contentType:file.type});if(error){notify(errorText(error),true);return}imageUrl=supabase.storage.from('site-media').getPublicUrl(imagePath).data.publicUrl}const payload={title:$('photo-title').value.trim()||null,caption:$('photo-caption').value.trim()||null,topic:$('photo-category').value,image_path:imagePath,image_url:imageUrl,published:$('photo-published').checked};const result=id?await supabase.from('photos').update(payload).eq('id',id):await supabase.from('photos').insert(payload);if(result.error){notify(errorText(result.error),true);return}resetPhoto();notify('Photo saved to its selected category.');await loadPhotos()});
+    document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{const photoTab=b.dataset.tab==='photos';$('articles-panel').classList.toggle('hidden',photoTab);$('photos-panel').classList.toggle('hidden',!photoTab);document.querySelectorAll('[data-tab]').forEach(t=>{t.classList.toggle('active',t===b);t.classList.toggle('secondary',t!==b)})}));
+    $('login-form').addEventListener('submit',async e=>{e.preventDefault();clearNotice();const {data,error}=await supabase.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error){notify(`Sign-in failed: ${errorText(error)}`,true);return}$('password').value='';await checkAdmin(data.session)});
+    $('sign-out').addEventListener('click',async()=>{await supabase.auth.signOut();notify('Signed out.')});
+    setupCategories();supabase.auth.onAuthStateChange((_event,session)=>{void checkAdmin(session)});const {data:{session}}=await supabase.auth.getSession();await checkAdmin(session);
   </script>
 </body>
 </html>
