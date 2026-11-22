@@ -1,2 +1,74 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Get in touch with the KaMoRaLe community."><meta name="theme-color" content="#083b63"><title>Contact | KaMoRaLe</title><link rel="stylesheet" href="./site.css"></head><body><header class="header"><div class="nav-wrap"><a class="brand" href="./index.html">KaMoRaLe</a><nav aria-label="Main navigation"><a href="./index.html">Home</a><a href="./blog.html">Stories</a><a href="./gallery.html">Gallery</a><a href="./explore.html">Explore</a><a aria-current="page" href="./contact.html">Contact</a><a class="admin-link" href="./admin/">Admin</a></nav></div></header><main class="page-wrap"><p class="eyebrow">Say hello</p><h1>Let’s connect</h1><p class="page-intro">Have a question, a story to share, or just want to connect? KaMoRaLe is a welcoming place for island stories and community.</p><section class="contact-card"><h2>Join the conversation</h2><p>Explore the stories, leave a comment, react to a post, or share a favorite moment with the community.</p><p><a class="button" href="./blog.html">Visit community stories</a></p></section></main><footer>© <span id="year"></span> KaMoRaLe · <a href="./index.html">Home</a></footer><script>document.getElementById('year').textContent=new Date().getFullYear()</script></body></html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Get in touch with the KaMoRaLe community.">
+  <meta name="theme-color" content="#083b63">
+  <title>Contact | KaMoRaLe</title>
+
+  <link rel="stylesheet" href="./site.css">
+
+  <!-- ReFaluwash PWA -->
+  <link rel="manifest" href="./manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="ReFaluwash">
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="./pwa.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="nav-wrap">
+      <a class="brand" href="./index.html">KaMoRaLe</a>
+
+      <nav aria-label="Main navigation">
+        <a href="./index.html">Home</a>
+        <a href="./blog.html">Stories</a>
+        <a href="./gallery.html">Gallery</a>
+        <a href="./explore.html">Explore</a>
+        <a aria-current="page" href="./contact.html">Contact</a>
+        <a class="admin-link" href="./admin/">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+    <p class="eyebrow">Say hello</p>
+    <h1>Let’s connect</h1>
+
+    <p class="page-intro">
+      Have a question, a story to share, or just want to connect?
+      KaMoRaLe is a welcoming place for island stories and community.
+    </p>
+
+    <section class="contact-card">
+      <h2>Join the conversation</h2>
+      <p>
+        Explore the stories, leave a comment, react to a post,
+        or share a favorite moment with the community.
+      </p>
+      <p>
+        <a class="button" href="./blog.html">
+          Visit community stories
+        </a>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> KaMoRaLe ·
+    <a href="./index.html">Home</a>
+  </footer>
+
+  <!-- Existing page functionality -->
+  <script>
+    document.getElementById('year').textContent =
+      new Date().getFullYear();
+  </script>
+
+  <!-- ReFaluwash PWA activation -->
+  <script src="./pwa.js" defer></script>
+</body>
+</html>
