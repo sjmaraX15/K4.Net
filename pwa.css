@@ -1,0 +1,39 @@
+/* Mobile bottom navigation for ReFaluwash */
+.pwa-bottom-nav { display: none; }
+
+@media (max-width: 760px) {
+  body.has-pwa-nav { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
+  .pwa-bottom-nav {
+    position: fixed;
+    z-index: 999;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 2px;
+    padding: 7px 6px calc(7px + env(safe-area-inset-bottom));
+    background: rgba(8, 59, 99, .97);
+    border-top: 1px solid rgba(255,255,255,.2);
+    box-shadow: 0 -5px 20px rgba(7, 40, 65, .16);
+    backdrop-filter: blur(12px);
+  }
+  .pwa-bottom-nav a {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 4px 1px;
+    border-radius: 9px;
+    color: #dff3ff;
+    text-decoration: none;
+    font: 600 10px/1.2 system-ui, sans-serif;
+  }
+  .pwa-bottom-nav a.is-active {
+    color: #fff;
+    background: rgba(174, 234, 255, .16);
+  }
+  .pwa-nav-icon { font-size: 20px; line-height: 1.15; }
+}

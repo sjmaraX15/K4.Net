@@ -1,0 +1,20 @@
+{
+  "id": "./",
+  "name": "ReFaluwash | The Islanders",
+  "short_name": "ReFaluwash",
+  "description": "Our Stories, Our Islands, Our Voice.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f3faff",
+  "theme_color": "#083b63",
+  "icons": [
+    {
+      "src": "./assets/refaluwash-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
