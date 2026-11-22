@@ -1,4 +1,3 @@
-
 (() => {
   const isAdmin = /\/admin(?:\/|$)/i.test(location.pathname);
 
