@@ -1,2 +1,64 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Read and share stories from the KaMoRaLe community."><title>Stories | KaMoRaLe</title><link rel="stylesheet" href="./site.css"></head><body><header class="header"><div class="nav-wrap"><a class="brand" href="./index.html">KaMoRaLe</a><nav aria-label="Main navigation"><a href="./index.html">Home</a><a aria-current="page" href="./blog.html">Stories</a><a href="./gallery.html">Gallery</a><a href="./explore.html">Explore</a><a href="./contact.html">Contact</a><a class="admin-link" href="./admin/">Admin</a></nav></div></header><main class="section"><div class="page-heading"><p class="eyebrow">Stories, ideas & island life</p><h1>From the KaMoRaLe community</h1><p>Read along, leave a comment, react, and share a story with someone.</p></div><div id="story-feed" class="story-feed" aria-live="polite"><p class="muted">Loading stories…</p></div></main><footer>© <span id="year"></span> KaMoRaLe · <a href="./index.html">Back home</a></footer><script type="module" src="./social.js"></script><script>document.getElementById('year').textContent=new Date().getFullYear()</script></body></html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Read and share stories from the KaMoRaLe community.">
+  <title>Stories | KaMoRaLe</title>
+
+  <link rel="stylesheet" href="./site.css">
+
+  <!-- ReFaluwash PWA -->
+  <link rel="manifest" href="./manifest.webmanifest">
+  <meta name="theme-color" content="#083b63">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="ReFaluwash">
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="./pwa.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="nav-wrap">
+      <a class="brand" href="./index.html">KaMoRaLe</a>
+
+      <nav aria-label="Main navigation">
+        <a href="./index.html">Home</a>
+        <a aria-current="page" href="./blog.html">Stories</a>
+        <a href="./gallery.html">Gallery</a>
+        <a href="./explore.html">Explore</a>
+        <a href="./contact.html">Contact</a>
+        <a class="admin-link" href="./admin/">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="page-heading">
+      <p class="eyebrow">Stories, ideas & island life</p>
+      <h1>From the KaMoRaLe community</h1>
+      <p>Read along, leave a comment, react, and share a story with someone.</p>
+    </div>
+
+    <div id="story-feed" class="story-feed" aria-live="polite">
+      <p class="muted">Loading stories…</p>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> KaMoRaLe ·
+    <a href="./index.html">Back home</a>
+  </footer>
+
+  <!-- Existing scripts -->
+  <script type="module" src="./social.js"></script>
+  <script>
+    document.getElementById('year').textContent =
+      new Date().getFullYear();
+  </script>
+
+  <!-- ReFaluwash PWA activation -->
+  <script src="./pwa.js" defer></script>
+</body>
+</html>
