@@ -1,4 +1,37 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Browse KaMoRaLe community photos and island moments."><meta name="theme-color" content="#083b63"><title>Gallery | KaMoRaLe</title><link rel="stylesheet" href="./site.css"></head><body><header class="header"><div class="nav-wrap"><a class="brand" href="./index.html">KaMoRaLe</a><nav aria-label="Main navigation"><a href="./index.html">Home</a><a href="./blog.html">Stories</a><a aria-current="page" href="./gallery.html">Gallery</a><a href="./explore.html">Explore</a><a href="./contact.html">Contact</a><a class="admin-link" href="./admin/">Admin</a></nav></div></header><main class="page-wrap"><p class="eyebrow">Moments from our islands</p><h1>Community gallery</h1><p class="page-intro">Photos and videos shared by the KaMoRaLe community. A little sunshine, sea, and island life.</p><div id="gallery" class="photo-grid" aria-live="polite"><p class="empty">Loading photos…</p></div><p id="error" class="muted" hidden></p></main><footer>© <span id="year"></span> KaMoRaLe · <a href="./index.html">Home</a></footer><script type="module">
-import{createClient}from'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';const supabase=createClient('https://oyfearfdtyfqlvoxixpi.supabase.co','sb_publishable_WjFfVN6IpnYSdlfVmoX5rg_BTRf0Ax5');const $=id=>document.getElementById(id);$('year').textContent=new Date().getFullYear();function publicUrl(p){return p.image_url||(p.image_path?supabase.storage.from('site-media').getPublicUrl(p.image_path).data.publicUrl:'')}function isVideo(url){return/\.(mp4|webm|ogg|mov)(\?|$)/i.test(url||'')}try{const{data,error}=await supabase.from('photos').select('*').eq('published',true).order('created_at',{ascending:false});if(error)throw error;const grid=$('gallery');grid.replaceChildren();if(!data?.length){const empty=document.createElement('p');empty.className='empty';empty.textContent='No photos or videos published yet. Check back soon.';grid.append(empty)}for(const photo of data||[]){const card=document.createElement('figure');card.className='photo-card';const url=publicUrl(photo);if(url){const media=document.createElement(isVideo(url)?'video':'img');media.src=url;if(media.tagName==='VIDEO'){media.controls=true;media.preload='metadata'}else{media.alt=photo.title||photo.caption||'Island community photo';media.loading='lazy'}card.append(media)}const caption=document.createElement('figcaption');caption.textContent=photo.title||photo.caption||'Island moment';card.append(caption);grid.append(card)}}catch(error){$('gallery').innerHTML='';const empty=document.createElement('p');empty.className='empty';empty.textContent='The gallery is temporarily unavailable.';$('gallery').append(empty);$('error').hidden=false;$('error').textContent=error.message||'Please try again later.'}
-</script></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Browse KaMoRaLe community photos and island moments.">
+  <meta name="theme-color" content="#083b63">
+  <title>Gallery | KaMoRaLe</title>
+  <link rel="stylesheet" href="./site.css">
+  <link rel="stylesheet" href="./gallery-social.css">
+</head>
+<body>
+  <header class="header">
+    <div class="nav-wrap">
+      <a class="brand" href="./index.html">KaMoRaLe</a>
+      <nav aria-label="Main navigation">
+        <a href="./index.html">Home</a>
+        <a href="./blog.html">Stories</a>
+        <a aria-current="page" href="./gallery.html">Gallery</a>
+        <a href="./explore.html">Explore</a>
+        <a href="./contact.html">Contact</a>
+        <a class="admin-link" href="./admin/">Admin</a>
+      </nav>
+    </div>
+  </header>
+  <main class="page-wrap">
+    <p class="eyebrow">Moments from our islands</p>
+    <h1>Community gallery</h1>
+    <p class="page-intro">Photos and videos shared by the KaMoRaLe community. A little sunshine, sea, and island life.</p>
+    <div id="gallery" class="photo-grid" aria-live="polite"><p class="empty">Loading photos…</p></div>
+    <p id="error" class="muted" hidden></p>
+  </main>
+  <footer>© <span id="year"></span> KaMoRaLe · <a href="./index.html">Home</a></footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+  <script type="module" src="./gallery-social.js"></script>
+</body>
+</html>
