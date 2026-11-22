@@ -1,4 +1,29 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="KaMoRaLe — stories, photos, and island life. Welcome and explore."><meta name="theme-color" content="#083b63"><title>KaMoRaLe | Welcome</title><link rel="stylesheet" href="./site.css"></head><body><header class="header"><div class="nav-wrap"><a class="brand" href="./index.html">KaMoRaLe</a><nav aria-label="Main navigation"><a aria-current="page" href="./index.html">Home</a><a href="./blog.html">Stories</a><a href="./gallery.html">Gallery</a><a href="./explore.html">Explore</a><a href="./contact.html">Contact</a><a class="admin-link" href="./admin/">Admin</a></nav></div></header><main><section class="hero"><div class="hero-inner"><p class="eyebrow">A warm welcome to you</p><h1>Welcome to KaMoRaLe</h1><p class="welcome">A place to share stories, celebrate island life, and connect with one another. Come on in, explore, and make yourself at home.</p><a class="button" href="./blog.html">Explore the stories</a></div></section><section class="section"><div class="section-heading"><div><p class="eyebrow">From our community</p><h2>Latest featured post</h2></div><a href="./blog.html">See all stories →</a></div><div id="featured" class="story-grid" aria-live="polite"><p class="empty">Loading the latest post…</p></div></section></main><footer>© <span id="year"></span> KaMoRaLe · Welcome, and thank you for being here.</footer><script type="module">
-import{createClient}from'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';const supabase=createClient('https://oyfearfdtyfqlvoxixpi.supabase.co','sb_publishable_WjFfVN6IpnYSdlfVmoX5rg_BTRf0Ax5');document.getElementById('year').textContent=new Date().getFullYear();const featured=document.getElementById('featured');function addCard(item,isPhoto){const card=document.createElement('article');card.className='story-card';const url=item.image_url||(item.image_path?supabase.storage.from('site-media').getPublicUrl(item.image_path).data.publicUrl:'');if(url){const img=document.createElement('img');img.src=url;img.alt=item.title||item.caption||'Featured island photo';img.loading='lazy';card.append(img)}const body=document.createElement('div');body.className='story-body';const category=document.createElement('span');category.className='category';category.textContent=isPhoto?(item.topic||'Island moments'):(item.topic||'Community story');const title=document.createElement('h3');title.textContent=item.title||'Island moment';const text=document.createElement('p');text.textContent=isPhoto?(item.caption||'A moment from our islands.'):(item.excerpt||item.content||'');body.append(category,title,text);card.append(body);featured.append(card)}try{const[ar,pr]=await Promise.all([supabase.from('articles').select('title,topic,excerpt,content,image_url,headline,published,created_at').eq('published',true).eq('headline',true).order('created_at',{ascending:false}).limit(1),supabase.from('photos').select('title,topic,caption,image_url,image_path,headline,published,created_at').eq('published',true).eq('headline',true).order('created_at',{ascending:false}).limit(1)]);featured.replaceChildren();if(ar.error||pr.error)throw ar.error||pr.error;const latest=[...(ar.data||[]).map(item=>({...item,postType:'article'})),...(pr.data||[]).map(item=>({...item,postType:'photo'}))].sort((a,b)=>new Date(b.created_at||0)-new Date(a.created_at||0))[0];if(latest)addCard(latest,latest.postType==='photo');else{const empty=document.createElement('p');empty.className='empty';empty.textContent='No featured posts yet. Feature an article or photo from the admin dashboard.';featured.append(empty)}}catch(error){featured.replaceChildren();const empty=document.createElement('p');empty.className='empty';empty.textContent='The latest post is temporarily unavailable.';featured.append(empty);console.error(error)}
-</script></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="KaMoRaLe — stories, photos, and island life. Welcome and explore.">
+  <meta name="theme-color" content="#083b63">
+  <title>KaMoRaLe | Welcome</title>
+  <link rel="stylesheet" href="./site.css">
+  <style>
+    .featured-photo{max-width:760px;margin:0 auto}
+    .featured-photo img{display:block;width:100%;max-height:520px;object-fit:cover;border-radius:14px}
+    .featured-photo h3{margin:.8rem 0 .25rem}
+    .featured-photo a{font-weight:700}
+    .featured-status{color:#587488}
+    .island-photo{display:block;width:100%;height:220px;object-fit:cover;border-radius:10px;margin:12px 0}
+  </style>
+</head>
+<body>
+  <header class="header"><div class="nav-wrap"><a class="brand" href="./index.html">KaMoRaLe</a><nav aria-label="Main navigation"><a aria-current="page" href="./index.html">Home</a><a href="./blog.html">Stories</a><a href="./gallery.html">Gallery</a><a href="./explore.html">Explore</a><a href="./contact.html">Contact</a><a class="admin-link" href="./admin/">Admin</a></nav></div></header>
+  <main>
+    <section class="hero"><div class="hero-inner"><p class="eyebrow">A warm welcome to you</p><h1>Welcome to KaMoRaLe</h1><p class="welcome">A place to share stories, celebrate island life, and connect with one another. Come on in, explore, and make yourself at home.</p><a class="button" href="./blog.html">Explore the stories</a></div></section>
+    <section class="section" aria-labelledby="featured-heading"><div class="section-heading"><div><p class="eyebrow">From our community</p><h2 id="featured-heading">Latest featured photo</h2></div></div><div id="featured" aria-live="polite"><p class="featured-status">Loading the latest photo…</p></div></section>
+  </main>
+  <footer>© <span id="year"></span> KaMoRaLe · Welcome, and thank you for being here.</footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+  <script type="module" src="./featured.js"></script>
+</body>
+</html>
