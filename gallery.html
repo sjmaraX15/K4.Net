@@ -1,4 +1,5 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -6,13 +7,23 @@
   <meta name="description" content="Browse KaMoRaLe community photos and island moments.">
   <meta name="theme-color" content="#083b63">
   <title>Gallery | KaMoRaLe</title>
+
   <link rel="stylesheet" href="./site.css">
   <link rel="stylesheet" href="./gallery-social.css">
+
+  <!-- ReFaluwash PWA -->
+  <link rel="manifest" href="./manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="ReFaluwash">
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="./pwa.css">
 </head>
+
 <body>
   <header class="header">
     <div class="nav-wrap">
       <a class="brand" href="./index.html">KaMoRaLe</a>
+
       <nav aria-label="Main navigation">
         <a href="./index.html">Home</a>
         <a href="./blog.html">Stories</a>
@@ -23,15 +34,35 @@
       </nav>
     </div>
   </header>
+
   <main class="page-wrap">
     <p class="eyebrow">Moments from our islands</p>
     <h1>Community gallery</h1>
-    <p class="page-intro">Photos and videos shared by the KaMoRaLe community. A little sunshine, sea, and island life.</p>
-    <div id="gallery" class="photo-grid" aria-live="polite"><p class="empty">Loading photos…</p></div>
+    <p class="page-intro">
+      Photos and videos shared by the KaMoRaLe community.
+      A little sunshine, sea, and island life.
+    </p>
+
+    <div id="gallery" class="photo-grid" aria-live="polite">
+      <p class="empty">Loading photos…</p>
+    </div>
+
     <p id="error" class="muted" hidden></p>
   </main>
-  <footer>© <span id="year"></span> KaMoRaLe · <a href="./index.html">Home</a></footer>
-  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+
+  <footer>
+    © <span id="year"></span> KaMoRaLe ·
+    <a href="./index.html">Home</a>
+  </footer>
+
+  <!-- Existing gallery scripts -->
+  <script>
+    document.getElementById('year').textContent =
+      new Date().getFullYear();
+  </script>
   <script type="module" src="./gallery-social.js"></script>
+
+  <!-- ReFaluwash PWA activation -->
+  <script src="./pwa.js" defer></script>
 </body>
 </html>
