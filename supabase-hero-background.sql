@@ -1,9 +1,10 @@
--- Run once after adding the hero background option.
--- Adds one boolean column to photos: true means use this photo behind the homepage heading.
+-- Run once in Supabase Dashboard > SQL Editor.
+-- The existing Admin checkbox "Feature this photo in the homepage heading"
+-- sets headline=true. The homepage slideshow rotates those selected photos.
+-- If no photos are selected, the newest published photos are used instead.
 
-alter table public.photos add column if not exists hero_background boolean not null default false;
+alter table public.photos
+  add column if not exists headline boolean not null default false,
+  add column if not exists hero_background boolean not null default false;
 
--- Keep at most one hero photo selected.
-create unique index if not exists photos_single_hero_background
-  on public.photos (hero_background)
-  where hero_background = true;
+notify pgrst, 'reload schema';
