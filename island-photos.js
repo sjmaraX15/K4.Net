@@ -19,22 +19,57 @@ try {
     .order('created_at', { ascending: false });
   if (error) throw error;
 
+  const photos = data || [];
+
   for (const card of document.querySelectorAll('[data-island]')) {
     const island = card.dataset.island.toLocaleLowerCase();
-    const photo = (data || []).find(item => (item.topic || '').trim().toLocaleLowerCase() === island && imageUrl(item));
-    if (!photo) continue;
+    const islandPhotos = photos
+      .filter(item => (item.topic || '').trim().toLocaleLowerCase() === island)
+      .map(item => ({
+        url: imageUrl(item),
+        alt: item.title || item.caption || `${card.dataset.island} island photo`
+      }))
+      .filter(photo => photo.url);
+
+    if (!islandPhotos.length) continue;
+
+    const cover = card.querySelector('.state-cover');
     const link = document.createElement('a');
     link.className = 'island-photo-link';
     link.href = './gallery.html#gallery';
+
     const image = document.createElement('img');
     image.className = 'island-photo';
-    image.src = imageUrl(photo);
-    image.alt = photo.title || photo.caption || `${card.dataset.island} island photo`;
+    image.alt = islandPhotos[0].alt;
     image.loading = 'lazy';
-    link.append(image);
 
-    // Homepage state cards provide a dedicated photo cover slot; explore cards keep the existing appended-photo layout.
-    const cover = card.querySelector('.state-cover');
+    Promise.all(islandPhotos.map(photo => new Promise(resolve => {
+      const preload = new Image();
+      preload.onload = () => resolve(photo);
+      preload.onerror = () => resolve(null);
+      preload.src = photo.url;
+    }))).then(loaded => {
+      const validPhotos = loaded.filter(Boolean);
+      if (!validPhotos.length) return;
+
+      let current = 0;
+      image.src = validPhotos[current].url;
+      image.alt = validPhotos[current].alt;
+
+      if (validPhotos.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        window.setInterval(() => {
+          current = (current + 1) % validPhotos.length;
+          image.style.opacity = '0';
+          window.setTimeout(() => {
+            image.src = validPhotos[current].url;
+            image.alt = validPhotos[current].alt;
+            image.style.opacity = '1';
+          }, 250);
+        }, 5500);
+      }
+    });
+
+    link.append(image);
     if (cover) cover.append(link);
     else card.append(link);
   }
