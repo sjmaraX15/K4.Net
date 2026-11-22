@@ -72,5 +72,6 @@
   <script>document.getElementById('year').textContent=new Date().getFullYear();const track=document.getElementById('state-track');document.querySelectorAll('[data-scroll]').forEach(button=>button.addEventListener('click',()=>track.scrollBy({left:(button.dataset.scroll==='next'?1:-1)*Math.min(track.clientWidth*.8,380),behavior:'smooth'})));</script>
   <script type="module" src="./featured.js"></script>
   <script type="module" src="./island-photos.js"></script>
+  <script src="./pwa.js" defer></script>
 </body>
 </html>
