@@ -32,7 +32,11 @@ try {
     image.alt = photo.title || photo.caption || `${card.dataset.island} island photo`;
     image.loading = 'lazy';
     link.append(image);
-    card.append(link);
+
+    // Homepage state cards provide a dedicated photo cover slot; explore cards keep the existing appended-photo layout.
+    const cover = card.querySelector('.state-cover');
+    if (cover) cover.append(link);
+    else card.append(link);
   }
 } catch (error) {
   console.error('Unable to load island photos:', error);
